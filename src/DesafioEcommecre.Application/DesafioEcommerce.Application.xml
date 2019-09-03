@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DesafioEcommerce.Application</name>
+    </assembly>
+    <members>
+        <member name="T:DesafioEcommerce.Application.Controllers.ProductController">
+            <summary>
+            Controller of product management
+            </summary>
+        </member>
+        <member name="M:DesafioEcommerce.Application.Controllers.ProductController.Get">
+            <summary>
+            Get all registred products
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
