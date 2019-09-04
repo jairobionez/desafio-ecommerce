@@ -10,6 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace DesafioEcommerce.Application
 {
@@ -39,6 +42,10 @@ namespace DesafioEcommerce.Application
                     Description = "Descrição dos métodos da API do e-commerce",
                     Contact = new Contact { Name = "Jairo Bionez", Email = "jairo.d.b@hotmail.com", Url = "https://github.com/jairobionez" },                    
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
             });
 
             services.AddMvc().AddFluentValidation();
