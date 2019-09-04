@@ -9,5 +9,8 @@ namespace DesafioEcommerce.Domain.Interfaces.Services
     {
         IEnumerable<Product> Get();
         Product GetById(int id);
+        Product Post(Product obj);
+        Product Put(Product obj);
+        void Delete(int id);
     }
 }

@@ -1,4 +1,9 @@
-﻿namespace DesafioEcommerce.Domain.Entities
+﻿using DesafioEcommerce.Domain.Validations;
+using FluentValidation;
+using FluentValidation.Results;
+using System.Linq;
+
+namespace DesafioEcommerce.Domain.Entities
 {
     public class Product : BaseEntity
     {
@@ -17,5 +22,12 @@
         public decimal Value { get; set; }
 
         public decimal Weight { get; set; }
+
+        public ValidationResult Validation()
+        {
+            var ValidationResult = new ProductValidation().Validate(this);
+
+            return ValidationResult;
+        }
     }
 }

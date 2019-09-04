@@ -26,5 +26,24 @@ namespace DesafioEcommerce.Infra.Data.Repository
         {
             return DbSet.Find(id);
         }
+
+        public TEntity Post(TEntity obj)
+        {
+            DbSet.Add(obj);
+
+            return obj;
+        }
+
+        public TEntity Put(TEntity obj)
+        {
+            Db.Entry(obj).State = EntityState.Modified;
+
+            return obj;
+        }
+
+        public void Delete(TEntity obj)
+        {
+            DbSet.Remove(obj);                       
+        }
     }
 }

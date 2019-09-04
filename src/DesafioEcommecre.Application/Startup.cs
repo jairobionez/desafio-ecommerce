@@ -1,5 +1,8 @@
-﻿using DesafioEcommerce.Infra.CrossCutting.IoC;
+﻿using AutoMapper;
+using DesafioEcommerce.Application.AutoMapper;
+using DesafioEcommerce.Infra.CrossCutting.IoC;
 using DesafioEcommerce.Infra.Data.Context;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +28,8 @@ namespace DesafioEcommerce.Application
             services.AddDbContext<EcommerceContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("EcommerceConnectionString")));
 
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new Info
@@ -36,7 +41,7 @@ namespace DesafioEcommerce.Application
                 });
             });
 
-
+            services.AddMvc().AddFluentValidation();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // DI
