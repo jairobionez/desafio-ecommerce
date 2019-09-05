@@ -8,7 +8,7 @@ namespace DesafioEcommerce.Domain.ValueObjects
 {
     public class Address : ValueObject
     {
-        public Address(string street, string city, string state, string zipCode, string neighborhood, int number)
+        public Address(string street, string city, string state, string zipCode, string neighborhood, string number)
         {
             Street = street;
             City = city;
@@ -39,6 +39,6 @@ namespace DesafioEcommerce.Domain.ValueObjects
         public string Neighborhood { get; private set; }
 
         [DisplayName("Numero")]
-        public int Number { get; private set; }
+        public string Number { get; private set; }
     }
 }

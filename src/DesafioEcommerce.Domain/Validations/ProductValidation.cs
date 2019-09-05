@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace DesafioEcommerce.Domain.Validations
 {
-    public  class ProductValidation : AbstractValidator<Product>
+    public class ProductValidation : AbstractValidator<Product>
     {
         public ProductValidation()
         {

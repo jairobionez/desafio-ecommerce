@@ -82,7 +82,7 @@ namespace DesafioEcommerce.Application.Controllers
         }
 
         /// <summary>
-        /// Atualiza um novo produto
+        /// Atualiza um produto
         /// </summary>
         /// <param name="obj">Representa o produto a ser alterado</param>
         /// <returns>Retorna o produto atualizado</returns>        

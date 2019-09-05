@@ -1,5 +1,7 @@
-﻿using DesafioEcommerce.Application.ViewModels;
+﻿using AutoMapper;
+using DesafioEcommerce.Domain.Commands;
 using DesafioEcommerce.Domain.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -11,19 +13,47 @@ namespace DesafioEcommerce.Application.Controllers
     [Route("api/payment")]
     [ApiController]
     public class PaymentController : BaseController
-    {        
-        public PaymentController(INotifiable notifications, IUnitOfWork uow) : base(notifications, uow)
-        {
+    {
+        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
+        public PaymentController(INotifiable notifications,
+            IMediator mediator,
+            IUnitOfWork uow,
+            IMapper mapper) : base(notifications, uow)
+        {
+            _mapper = mapper;
+            _mediator = mediator;
         }
 
         /// <summary>
-        /// Realiza o pagamento de uma compra
+        /// Realiza o pagamento de uma compra por boleto
         /// </summary>        
         [HttpPost]
-        public async Task<IActionResult> Payment([FromBody] PaymentViewModel payment)
+        [Route("boleto")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> Payment([FromBody] CreateBoletoPaymentCommand payment)
         {
-            return null;
+            var commandResult = await _mediator.Send(payment);
+
+            return Response(commandResult);
+        }
+
+        /// <summary>
+        /// Realiza o pagamento de uma compra por cartão de crédito
+        /// </summary>        
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        [Route("credit-card")]
+        public async Task<IActionResult> Payment([FromBody] CreateCreditCardPaymentCommand payment)
+        {
+            var commandResult = await _mediator.Send(payment);
+
+            return Response(commandResult);
         }
     }
 }

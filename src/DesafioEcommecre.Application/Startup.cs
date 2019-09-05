@@ -3,6 +3,7 @@ using DesafioEcommerce.Application.AutoMapper;
 using DesafioEcommerce.Infra.CrossCutting.IoC;
 using DesafioEcommerce.Infra.Data.Context;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,9 @@ namespace DesafioEcommerce.Application
             options.UseSqlServer(Configuration.GetConnectionString("EcommerceConnectionString")));
 
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+
+            var assembly = AppDomain.CurrentDomain.Load("DesafioEcommerce.Domain");
+            services.AddMediatR(assembly);
 
             services.AddSwaggerGen(s =>
             {

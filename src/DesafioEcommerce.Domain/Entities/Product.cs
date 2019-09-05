@@ -1,7 +1,5 @@
 ﻿using DesafioEcommerce.Domain.Validations;
-using FluentValidation;
 using FluentValidation.Results;
-using System.Linq;
 
 namespace DesafioEcommerce.Domain.Entities
 {
@@ -25,9 +23,9 @@ namespace DesafioEcommerce.Domain.Entities
 
         public ValidationResult Validation()
         {
-            var ValidationResult = new ProductValidation().Validate(this);
+            var validation = new ProductValidation().Validate(this);
 
-            return ValidationResult;
+            return validation;
         }
     }
 }
