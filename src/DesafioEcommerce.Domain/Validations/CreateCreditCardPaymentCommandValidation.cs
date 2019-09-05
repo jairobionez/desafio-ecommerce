@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace DesafioEcommerce.Domain.Validations
 {
-    class CreateCreditCardPaymentCommandValidation : AbstractValidator<CreateCreditCardPaymentCommand>
+    public class CreateCreditCardPaymentCommandValidation : AbstractValidator<CreateCreditCardPaymentCommand>
     {
         public CreateCreditCardPaymentCommandValidation()
         {

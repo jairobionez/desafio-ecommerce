@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace DesafioEcommerce.Domain.ValueObjects
 {
@@ -18,27 +15,16 @@ namespace DesafioEcommerce.Domain.ValueObjects
             Number = number;
         }
                 
-        [MaxLength(100)]
-        [DisplayName("Rua")]
         public string Street { get; private set; }
 
-        [MaxLength(100)]
-        [DisplayName("Cidade")]
         public string City { get; private set; }
 
-        [MaxLength(50)]
-        [DisplayName("Estado")]
         public string State { get; private set; }
 
-        [MaxLength(8)]
-        [DisplayName("CEP")]
         public string ZipCode { get; private set; }
 
-        [DisplayName("Bairro")]
-        [MaxLength(30)]
         public string Neighborhood { get; private set; }
 
-        [DisplayName("Numero")]
         public string Number { get; private set; }
     }
 }

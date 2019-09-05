@@ -9,7 +9,6 @@ namespace DesafioEcommerce.Application.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<ProductViewModel, Product>();
-            CreateMap<PaymentViewModel, Payment>();
         }
     }
 }

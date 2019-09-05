@@ -14,12 +14,8 @@ namespace DesafioEcommerce.Domain.ValueObjects
             LastName = lastName;
         }
 
-        [MaxLength(50)]
-        [DisplayName("Nome")]
         public string FirstName { get; private set; }
 
-        [MaxLength(100)]        
-        [DisplayName("Sobrenome")]
         public string LastName { get; private set; }
 
         public override string ToString()
