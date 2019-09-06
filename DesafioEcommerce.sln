@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioEcommerce.Infra", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioEcommerce.Domain", "src\DesafioEcommerce.Domain\DesafioEcommerce.Domain.csproj", "{A14655F7-2299-4D66-A73C-4C4A4332AF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioEcommerce.Test", "DesafioEcommerce.Test\DesafioEcommerce.Test.csproj", "{89E5535F-486B-47A3-96CD-D4E83AAFA6B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioEcommerce.Test", "src\DesafioEcommerce.Test\DesafioEcommerce.Test.csproj", "{89E5535F-486B-47A3-96CD-D4E83AAFA6B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

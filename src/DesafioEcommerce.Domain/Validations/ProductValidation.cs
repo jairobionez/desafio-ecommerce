@@ -11,6 +11,7 @@ namespace DesafioEcommerce.Domain.Validations
             ValidateAmount();
             ValidateWeight();
             ValidateValue();
+            ValidateEan();
         }
 
         protected void ValidateDescription()
@@ -39,6 +40,12 @@ namespace DesafioEcommerce.Domain.Validations
             RuleFor(p => p.Value)
                 .NotEmpty().WithMessage("O produto precisa de um valor")
                 .GreaterThanOrEqualTo(0).WithMessage("O valor do produto não pode ser menor que R$0.00");
+        }
+
+        protected void ValidateEan()
+        {
+            RuleFor(p => p.EanCode)
+                .Length(0, 13).WithMessage("O Código EAN deve ter 13 números");
         }
     }
 }

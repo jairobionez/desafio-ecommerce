@@ -4,6 +4,7 @@ using DesafioEcommerce.Infra.CrossCutting.IoC;
 using DesafioEcommerce.Infra.Data.Context;
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +52,6 @@ namespace DesafioEcommerce.Application
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
             });
-
             services.AddMvc().AddFluentValidation();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -70,6 +70,8 @@ namespace DesafioEcommerce.Application
             {
                 app.UseHsts();
             }
+
+   
 
             app.UseHttpsRedirection();
             app.UseMvc();

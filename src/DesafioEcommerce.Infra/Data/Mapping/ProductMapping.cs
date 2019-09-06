@@ -13,7 +13,7 @@ namespace DesafioEcommerce.Infra.Data.Mapping
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Id)
-                .HasColumnName("ID")
+                .HasColumnName("SKU")
                 .HasColumnType("int");
 
             builder.Property(p => p.Description)
@@ -32,6 +32,14 @@ namespace DesafioEcommerce.Infra.Data.Mapping
             builder.Property(p => p.Weight)
                 .HasColumnName("PESO")
                 .HasColumnType("decimal(15,3)");
+
+            builder.Property(p => p.EanCode)
+                .HasColumnName("CODEAN")
+                .HasColumnType("varchar(13)");
+
+            builder.Property(p => p.Image)
+                .HasColumnName("IMAGEM")
+                .HasColumnType("image");
         }
         
     }

@@ -1,6 +1,7 @@
 ﻿using DesafioEcommerce.Domain.Entities;
 using DesafioEcommerce.Domain.Enums;
 using DesafioEcommerce.Domain.Interfaces;
+using DesafioEcommerce.Domain.ViewModel;
 using FluentValidation.Results;
 using MediatR;
 using System;
@@ -16,13 +17,9 @@ namespace DesafioEcommerce.Domain.Commands
         public string Email { get; set; }
         public string BarCode { get; set; }
         public string BoletoNumber { get; set; }
-        public string PayerNumber { get; set; }
         public DateTime PaidDate { get; set; }
-        public DateTime ExpireDate { get; set; }
         public decimal Total { get; set; }
         public decimal TotalPaid { get; set; }
-        public string Payer { get; set; }
-        public string PayerDocument { get; set; }
         public EDocumentTypeEnum PayerDocumentType { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
@@ -31,8 +28,7 @@ namespace DesafioEcommerce.Domain.Commands
         public string State { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }
-        public string PayerEmail { get; set; }
-        public List<Product> Products { get; set; }
+        public List<CartViewModel> Products { get; set; }
 
         public ValidationResult Valdiate()
         {

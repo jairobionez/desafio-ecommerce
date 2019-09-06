@@ -1,7 +1,7 @@
 ﻿using DesafioEcommerce.Domain.ValueObjects;
+using DesafioEcommerce.Domain.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DesafioEcommerce.Domain.Entities
 {
@@ -10,33 +10,34 @@ namespace DesafioEcommerce.Domain.Entities
         public CreditCardPayment(
            string cardHolderName,
            string cardNumber,
-           string lastTransactionNumber,
            Name name,
            Address address,
-           List<Product> products,
+           List<CartViewModel> products,
            DateTime paidDate,
-           DateTime expireDate,
            decimal total,
            decimal totalPaid,
            Document document,
-           Email email) : base(
+           Email email,
+           int security,
+           DateTime validDate) : base(
                name,
                address,
                products,
                total,
                paidDate,
-               expireDate,
                totalPaid,
                email,
                document)
         {
             CardHolderName = cardHolderName;
             CardNumber = cardNumber;
-            LastTransactionNumber = lastTransactionNumber;
+            SecurityCode = security;
+            ValidDate = validDate;
         }
 
         public string CardHolderName { get; private set; }
         public string CardNumber { get; private set; }
-        public string LastTransactionNumber { get; private set; }
+        public int SecurityCode { get; set; }
+        public DateTime ValidDate { get; set; }
     }
 }
