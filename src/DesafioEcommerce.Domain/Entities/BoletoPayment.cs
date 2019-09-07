@@ -11,7 +11,6 @@ namespace PaymentContext.Domain.Entities
         public BoletoPayment(
             Name name,
             Address address,
-            List<CartViewModel> products,
             string barCode,
             string boletoNumber,
             DateTime paidDate,
@@ -20,8 +19,7 @@ namespace PaymentContext.Domain.Entities
             Document document,
             Email email) : base(
                 name,
-                address,
-                products,
+                address,                
                 total,
                 paidDate,
                 totalPaid,

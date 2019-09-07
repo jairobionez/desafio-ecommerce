@@ -2,6 +2,7 @@
 using DesafioEcommerce.Domain.Entities;
 using DesafioEcommerce.Domain.Enums;
 using DesafioEcommerce.Domain.Interfaces;
+using DesafioEcommerce.Domain.Interfaces.Repository;
 using DesafioEcommerce.Domain.ValueObjects;
 using FluentValidation.Results;
 using MediatR;
@@ -14,16 +15,22 @@ using System.Threading.Tasks;
 
 namespace DesafioEcommerce.Domain.Handlers
 {
-    public class PaymentHandler : 
+    public class PaymentHandler :
         IRequestHandler<CreateCreditCardPaymentCommand, CommandResult>,
         IRequestHandler<CreateBoletoPaymentCommand, CommandResult>
     {
         private readonly INotifiable _notifications;
+        private readonly IProductRepository _productRepository;
+        private readonly IPaymentRepository _paymentRepository;
 
-        public PaymentHandler(INotifiable notifications)
+        public PaymentHandler(INotifiable notifications,
+            IProductRepository productRepository,
+            IPaymentRepository paymentRepository)
         {
             _notifications = notifications;
-        }              
+            _productRepository = productRepository;
+            _paymentRepository = paymentRepository;
+        }
 
         public Task<CommandResult> Handle(CreateBoletoPaymentCommand command, CancellationToken cancellationToken)
         {
@@ -35,26 +42,42 @@ namespace DesafioEcommerce.Domain.Handlers
                     return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
                 }
 
-                // Gerar VOs
                 var name = new Name(command.FirsName, command.LastName);
                 var document = new Document(command.Document, EDocumentTypeEnum.CPF);
                 var email = new Email(command.Email);
                 var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.Neighborhood, command.Number);
 
-                // Gerar entidades
-                var payment = new BoletoPayment(name, address, command.Products, command.BarCode, command.BoletoNumber, command.PaidDate,
+                var payment = new BoletoPayment(name, address, command.BarCode, command.BoletoNumber, command.PaidDate,
                                                 command.Total, command.TotalPaid, document, email);
+                payment.AddItems(command.Products);
 
-                // Dar baixa no estoque
+                _productRepository.CheckStock(command.Products);
 
-                if (!payment.Validate().IsValid)
-                    AddNotifications(payment.Validate().Errors.ToList());
+                if (IsValid())
+                {
+                    var productDrop = (from product in _productRepository.GetTableNoTracking()
+                                       join cart in command.Products on product.Id equals cart.Id
+                                       select new Product
+                                       {
+                                           Amount = (product.Amount - cart.Amount),
+                                           Description = product.Description,
+                                           EanCode = product.EanCode,
+                                           Id = product.Id,
+                                           Image = product.Image,
+                                           Value = product.Value,
+                                           Weight = product.Weight
+                                       }).ToList();
 
-                // Persistência
+                    _paymentRepository.Post(payment);
+                    _productRepository.PutRange(productDrop);
+
+                    if (!payment.Validate().IsValid)
+                        AddNotifications(payment.Validate().Errors.ToList());
+                }
 
                 return Task.FromResult(new CommandResult("Pagamento realizado com sucesso"));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
             }
@@ -62,32 +85,57 @@ namespace DesafioEcommerce.Domain.Handlers
 
         public Task<CommandResult> Handle(CreateCreditCardPaymentCommand command, CancellationToken cancellationToken)
         {
-            command.Valdiate();
-            if (!command.Valdiate().IsValid)
+            try
             {
-                AddNotifications(command.Valdiate().Errors.ToList());
+                command.Valdiate();
+                if (!command.Valdiate().IsValid)
+                {
+                    AddNotifications(command.Valdiate().Errors.ToList());
+                    return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
+                }
+
+                var name = new Name(command.FirsName, command.LastName);
+                var document = new Document(command.Document, EDocumentTypeEnum.CPF);
+                var email = new Email(command.Email);
+                var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.ZipCode, command.Number);
+
+                var payment = new CreditCardPayment(command.CardHolderName, command.CardNumber, name,
+                                                    address, command.PaidDate, command.Total, command.TotalPaid,
+                                                    document, email, command.SecurityCode, command.ValidDate);
+
+                payment.AddItems(command.Products);
+
+                _productRepository.CheckStock(command.Products);
+
+                if (IsValid())
+                {
+                    var productDrop = (from product in _productRepository.GetTableNoTracking()
+                                       join cart in command.Products on product.Id equals cart.Id
+                                       select new Product
+                                       {
+                                           Amount = (product.Amount - cart.Amount),
+                                           Description = product.Description,
+                                           EanCode = product.EanCode,
+                                           Id = product.Id,
+                                           Image = product.Image,
+                                           Value = product.Value,
+                                           Weight = product.Weight
+                                       }).ToList();
+
+                    _paymentRepository.Post(payment);
+                    _productRepository.PutRange(productDrop);
+
+                    if (!payment.Validate().IsValid)
+                        AddNotifications(payment.Validate().Errors.ToList());
+
+                }
+                return Task.FromResult(new CommandResult("Pagamento realizado com sucesso"));
+            }
+            catch (Exception ex)
+            {
                 return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
             }
 
-            // Gerar VOs
-            var name = new Name(command.FirsName, command.LastName);
-            var document = new Document(command.Document, EDocumentTypeEnum.CPF);
-            var email = new Email(command.Email);
-            var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.ZipCode, command.Number);
-
-            // Gerar entidades
-            var payment = new CreditCardPayment(command.CardHolderName, command.CardNumber, name,
-                                                address, command.Products, command.PaidDate, command.Total, command.TotalPaid,
-                                                document, email, command.SecurityCode, command.ValidDate);
-
-            // Dar baixa no estoque
-
-            if (!payment.Validate().IsValid)
-                AddNotifications(payment.Validate().Errors.ToList());
-
-            // Persistência
-
-            return Task.FromResult(new CommandResult( "Pagamento realizado com sucesso"));
         }
 
         public void AddNotifications(List<ValidationFailure> errors)
@@ -96,6 +144,11 @@ namespace DesafioEcommerce.Domain.Handlers
             {
                 _notifications.AddNotification(p.PropertyName, p.ErrorMessage);
             });
+        }
+
+        public bool IsValid()
+        {
+            return !_notifications.HasNotifications();
         }
     }
 }

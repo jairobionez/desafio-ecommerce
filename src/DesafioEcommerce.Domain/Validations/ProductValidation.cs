@@ -44,8 +44,8 @@ namespace DesafioEcommerce.Domain.Validations
 
         protected void ValidateEan()
         {
-            RuleFor(p => p.EanCode)
-                .Length(0, 13).WithMessage("O Código EAN deve ter 13 números");
+            RuleFor(p => p.EanCode)                
+                .Length(13).WithMessage("O Código EAN deve ter 13 números");
         }
     }
 }

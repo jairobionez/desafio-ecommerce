@@ -9,9 +9,11 @@ namespace DesafioEcommerce.Domain.Interfaces.Repository
     public interface IBaseRepository<TEntity>
     {
         IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> GetTableNoTracking();
         TEntity GetById(int id);
         TEntity Post(TEntity obj);
         TEntity Put(TEntity obj);
         void Delete(TEntity obj);
+        void PutRange(List<TEntity> obj);
     }
 }

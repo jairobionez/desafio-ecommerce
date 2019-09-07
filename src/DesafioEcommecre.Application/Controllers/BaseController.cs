@@ -39,7 +39,7 @@ namespace DesafioEcommerce.Application.Controllers
             return BadRequest(new
             {
                 success = false,                
-                errors = _notifications.GetNotifications().Select(n => n.Value)
+                errors = _notifications.GetNotifications().Select(n => new { Propriedade = n.Property, Notificacao = n.Value })
             });
         }
 
@@ -59,7 +59,7 @@ namespace DesafioEcommerce.Application.Controllers
             return BadRequest(new
             {
                 success = false,
-                errors = _notifications.GetNotifications().Select(n => n.Value)
+                errors = _notifications.GetNotifications().Select(n => new { Propriedade = n.Property, Notificacao = n.Value })
             });
         }
     }

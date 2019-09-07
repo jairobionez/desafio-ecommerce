@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DesafioEcommerce.Domain.Entities
@@ -16,14 +17,15 @@ namespace DesafioEcommerce.Domain.Entities
             Amount = amount;
             UnitPrice = unitPrice;
             Total = total;
-            OrderNumber = orderNumber;
+            PaymentNumber = orderNumber;
         }
 
         public int Amount { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal Total { get; set; }
-        public int OrderNumber { get; set; }
+        public int PaymentNumber { get; set; }
+        public string Description { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }

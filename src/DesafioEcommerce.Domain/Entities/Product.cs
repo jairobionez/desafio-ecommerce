@@ -1,5 +1,8 @@
 ﻿using DesafioEcommerce.Domain.Validations;
+using DesafioEcommerce.Domain.ViewModel;
 using FluentValidation.Results;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace DesafioEcommerce.Domain.Entities
@@ -28,13 +31,16 @@ namespace DesafioEcommerce.Domain.Entities
         public decimal Weight { get; set; }
         public string EanCode { get; set; }
 
-        public bool Validation()
+        public void CheckSotck(List<CartViewModel> cartProducts)
+        {
+
+        }
+
+        public ValidationResult Validation()
         {
             var validation = new ProductValidation().Validate(this);
 
-            AddNotifications(validation.Errors.ToList());
-
-            return validation.IsValid;
+            return validation;
         }
     }
 }

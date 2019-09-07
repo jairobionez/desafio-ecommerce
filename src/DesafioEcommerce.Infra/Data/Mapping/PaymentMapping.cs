@@ -1,28 +1,34 @@
 ﻿using DesafioEcommerce.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DesafioEcommerce.Infra.Data.Mapping
 {
-    class OrderMapping : IEntityTypeConfiguration<Order>
+    public class PaymentMapping : IEntityTypeConfiguration<Payment>
     {
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<Payment> builder)
         {
-            builder.ToTable("PEDIDO");
+            builder.ToTable("PAGAMENTO");
+
+            builder.Property(p => p.Id)
+                .HasColumnName("NROPAGAMENTO")
+                .HasColumnType("int");
 
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Id)
-                .HasColumnName("NROPEDIDO")
-                .HasColumnType("int");
+            builder.OwnsOne(name => name.Name, name =>
+            {
+                name.Property(p => p.FirstName)
+                .HasColumnName("NOME")
+                .HasColumnType("varchar(30)")
+                .HasMaxLength(30);
 
-            builder.Property(p => p.User)
-                .HasColumnName("USUARIO")
-                .HasColumnType("varchar(100)")
-                .HasMaxLength(100);
+                name.Property(p => p.LastName)
+                .HasColumnName("SOBRENOME")
+                .HasColumnType("varchar(70)")
+                .HasMaxLength(70);
+            });
+
 
             builder.OwnsOne(address => address.Address, address =>
             {
@@ -57,17 +63,31 @@ namespace DesafioEcommerce.Infra.Data.Mapping
                     .HasMaxLength(8);
             });
 
-            builder.Property(p => p.PaymentDate)
-                .HasColumnName("DTAPAGAMENTO")
-                .HasColumnType("datetime");
-
             builder.Property(p => p.Total)
                 .HasColumnName("TOTAL")
                 .HasColumnType("decimal(15,3)");
 
-            builder.Property(p => p.TotalPayd)
+            builder.Property(p => p.TotalPaid)
                 .HasColumnName("TOTALPAGO")
                 .HasColumnType("decimal(15,3)");
+
+            builder.Property(p => p.PaidDate)
+                        .HasColumnName("DTAPAGAMENTO")
+                        .HasColumnType("datetime");
+
+            builder.OwnsOne(document => document.Document, document =>
+            {
+                document.Property(p => p.Number)
+                .HasColumnName("DOCUMENTO")
+                .HasColumnType("varchar(14)")
+                .HasMaxLength(14);
+
+                document 
+                    .Property(p => p.Type)
+                    .HasColumnName("TIPODOCUMENTO")
+                    .HasColumnType("varchar(4)")
+                    .HasMaxLength(4);
+            });
 
             builder.OwnsOne(email => email.Email, email =>
             {
@@ -77,6 +97,5 @@ namespace DesafioEcommerce.Infra.Data.Mapping
                .HasMaxLength(50);
             });
         }
-
     }
 }

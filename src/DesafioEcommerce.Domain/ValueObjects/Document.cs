@@ -1,7 +1,5 @@
 ﻿using DesafioEcommerce.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DesafioEcommerce.Domain.ValueObjects
 {
@@ -14,7 +12,7 @@ namespace DesafioEcommerce.Domain.ValueObjects
         }
 
         public string Number { get; private set; }
-
+        
         public EDocumentTypeEnum Type { get; private set; }
 
         private bool Validate()

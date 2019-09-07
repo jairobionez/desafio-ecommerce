@@ -26,7 +26,8 @@ namespace DesafioEcommerce.Infra.CrossCutting.IoC
 
             // Infra - Repostories
             services.AddScoped<IProductRepository, ProductRepository>();
-
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            
             // Infra - Notifications
             services.AddScoped<INotifiable, Notifiable>();
 

@@ -17,7 +17,13 @@ namespace DesafioEcommerce.Infra.Data.Transactions
 
         public bool Commit()
         {
-            return _ecommerceContext.SaveChanges() > 0;
+            try
+            {
+                return _ecommerceContext.SaveChanges() > 0;
+            }catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         public void Dispose()

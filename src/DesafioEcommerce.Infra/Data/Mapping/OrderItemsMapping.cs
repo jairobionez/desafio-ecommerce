@@ -19,8 +19,8 @@ namespace DesafioEcommerce.Infra.Data.Mapping
                 .HasColumnName("ID")
                 .HasColumnType("int");
 
-            builder.Property(p => p.OrderNumber)
-                .HasColumnName("NROPEDIDO")
+            builder.Property(p => p.PaymentNumber)
+                .HasColumnName("NROPAGAMENTO")
                 .HasColumnType("int");
 
             builder.Property(p => p.UnitPrice)
@@ -28,16 +28,21 @@ namespace DesafioEcommerce.Infra.Data.Mapping
                 .HasColumnType("decimal(15,3)");
 
             builder.Property(p => p.Total)
-                .HasColumnName("TOTAL")
+                .HasColumnName("VLRTOTAL")
                 .HasColumnType("decimal(15,3)");
 
             builder.Property(p => p.Amount)
                 .HasColumnName("QUANTIDADE")
                 .HasColumnType("int");
 
-            builder.HasOne(p => p.Order)
+            builder.Property(p => p.Description)
+                .HasColumnName("DESCRICAO")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.HasOne(p => p.Payment)
                 .WithMany(p => p.Items)
-                .HasForeignKey(p => p.OrderNumber);
+                .HasForeignKey(p => p.PaymentNumber);
         }
     }
 }

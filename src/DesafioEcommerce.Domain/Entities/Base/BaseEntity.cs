@@ -4,17 +4,8 @@ using System.Collections.Generic;
 
 namespace DesafioEcommerce.Domain.Entities
 {
-    public abstract class BaseEntity : Notifiable
+    public abstract class BaseEntity
     {
         public int Id { get; set; }
-
-        public void AddNotifications(List<ValidationFailure> errors)
-        {
-            if(HasNotifications())
-                errors.ForEach(p =>
-                {
-                    AddNotification(p.PropertyName, p.ErrorMessage);
-                });
-        }
     }
 }

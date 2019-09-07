@@ -38,7 +38,7 @@ namespace DesafioEcommerce.Application.Controllers
         {
             var commandResult = await _mediator.Send(payment);
 
-            return Response(commandResult);
+            return TransactionResponse(commandResult);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace DesafioEcommerce.Application.Controllers
         {
             var commandResult = await _mediator.Send(payment);
 
-            return Response(commandResult);
+            return TransactionResponse(commandResult);
         }
     }
 }

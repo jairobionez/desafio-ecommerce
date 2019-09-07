@@ -12,7 +12,6 @@ namespace DesafioEcommerce.Domain.Entities
            string cardNumber,
            Name name,
            Address address,
-           List<CartViewModel> products,
            DateTime paidDate,
            decimal total,
            decimal totalPaid,
@@ -22,7 +21,6 @@ namespace DesafioEcommerce.Domain.Entities
            DateTime validDate) : base(
                name,
                address,
-               products,
                total,
                paidDate,
                totalPaid,

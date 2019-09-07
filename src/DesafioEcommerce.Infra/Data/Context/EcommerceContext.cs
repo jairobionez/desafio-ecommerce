@@ -12,14 +12,14 @@ namespace DesafioEcommerce.Infra.Data.Context
 
         public virtual DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<Order> Orders { get; set; }
-
         public virtual DbSet<OrderItems> Items { get; set; }
+
+        public virtual DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration<Product>(new ProductMapping());
-            modelBuilder.ApplyConfiguration<Order>(new OrderMapping());
+            modelBuilder.ApplyConfiguration<Payment>(new PaymentMapping());
             modelBuilder.ApplyConfiguration<OrderItems>(new OrderItemsMapping());
         }
     }
