@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using DesafioEcommerce.Domain.Validations;
+using FluentValidation.Results;
 
 namespace DesafioEcommerce.Domain.ValueObjects
 {
@@ -26,5 +26,12 @@ namespace DesafioEcommerce.Domain.ValueObjects
         public string Neighborhood { get; private set; }
 
         public string Number { get; private set; }
+
+        public ValidationResult Validate()
+        {
+            var result = new AddressValidation().Validate(this);
+
+            return result;
+        }
     }
 }

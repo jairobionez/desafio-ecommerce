@@ -1,6 +1,7 @@
 ﻿using DesafioEcommerce.Domain.Entities;
 using DesafioEcommerce.Domain.Enums;
 using DesafioEcommerce.Domain.Interfaces;
+using DesafioEcommerce.Domain.Validations;
 using DesafioEcommerce.Domain.ViewModel;
 using FluentValidation.Results;
 using MediatR;
@@ -32,11 +33,9 @@ namespace DesafioEcommerce.Domain.Commands
 
         public ValidationResult Valdiate()
         {
-            //var result = new CreateBoletoSubscriptionCommandValidation().Validate(this);
+            var result = new CreateBoletoPaymentCommandValidation().Validate(this);
 
-            //return result.IsValid;
-
-            return new ValidationResult();
+            return result;            
         }
     }
 }

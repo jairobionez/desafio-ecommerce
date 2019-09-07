@@ -48,10 +48,10 @@ namespace DesafioEcommerce.Domain.Services
         {
             try
             {
-                if (obj.Validation().IsValid)
+                if (obj.Validate().IsValid)
                     return _productRepository.Post(obj);
                 else
-                    AddNotifications(obj.Validation().Errors.ToList());
+                    AddNotifications(obj.Validate().Errors.ToList());
             }
             catch (Exception ex)
             {
@@ -65,11 +65,11 @@ namespace DesafioEcommerce.Domain.Services
         {
             try
             {
-                if (obj.Validation().IsValid)
+                if (obj.Validate().IsValid)
                     return _productRepository.Put(obj);
                 else
                 {
-                    AddNotifications(obj.Validation().Errors.ToList());
+                    AddNotifications(obj.Validate().Errors.ToList());
                 }
 
             }

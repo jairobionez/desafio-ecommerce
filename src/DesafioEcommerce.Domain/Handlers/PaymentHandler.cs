@@ -47,9 +47,16 @@ namespace DesafioEcommerce.Domain.Handlers
                 var email = new Email(command.Email);
                 var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.Neighborhood, command.Number);
 
+                AddNotifications(name.Validate().Errors.ToList());
+                AddNotifications(email.Validate().Errors.ToList());
+                AddNotifications(document.Validate().Errors.ToList());
+                AddNotifications(address.Validate().Errors.ToList());
+
                 var payment = new BoletoPayment(name, address, command.BarCode, command.BoletoNumber, command.PaidDate,
                                                 command.Total, command.TotalPaid, document, email);
                 payment.AddItems(command.Products);
+
+                AddNotifications(payment.Validate().Errors.ToList());
 
                 _productRepository.CheckStock(command.Products);
 
@@ -87,7 +94,6 @@ namespace DesafioEcommerce.Domain.Handlers
         {
             try
             {
-                command.Valdiate();
                 if (!command.Valdiate().IsValid)
                 {
                     AddNotifications(command.Valdiate().Errors.ToList());
@@ -99,11 +105,18 @@ namespace DesafioEcommerce.Domain.Handlers
                 var email = new Email(command.Email);
                 var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.ZipCode, command.Number);
 
+                AddNotifications(name.Validate().Errors.ToList());
+                AddNotifications(email.Validate().Errors.ToList());
+                AddNotifications(document.Validate().Errors.ToList());
+                AddNotifications(address.Validate().Errors.ToList());
+
+
                 var payment = new CreditCardPayment(command.CardHolderName, command.CardNumber, name,
                                                     address, command.PaidDate, command.Total, command.TotalPaid,
                                                     document, email, command.SecurityCode, command.ValidDate);
-
                 payment.AddItems(command.Products);
+
+                AddNotifications(payment.Validate().Errors.ToList());
 
                 _productRepository.CheckStock(command.Products);
 
@@ -129,6 +142,7 @@ namespace DesafioEcommerce.Domain.Handlers
                         AddNotifications(payment.Validate().Errors.ToList());
 
                 }
+
                 return Task.FromResult(new CommandResult("Pagamento realizado com sucesso"));
             }
             catch (Exception ex)

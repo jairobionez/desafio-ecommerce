@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using DesafioEcommerce.Domain.Validations;
+using FluentValidation.Results;
 
 namespace DesafioEcommerce.Domain.ValueObjects
 {
@@ -21,6 +18,13 @@ namespace DesafioEcommerce.Domain.ValueObjects
         public override string ToString()
         {
             return $"{FirstName} {LastName}";
+        }
+
+        public ValidationResult Validate()
+        {
+            var result = new NameValidations().Validate(this);
+
+            return result;
         }
     }
 }

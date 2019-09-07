@@ -31,12 +31,7 @@ namespace DesafioEcommerce.Domain.Entities
         public decimal Weight { get; set; }
         public string EanCode { get; set; }
 
-        public void CheckSotck(List<CartViewModel> cartProducts)
-        {
-
-        }
-
-        public ValidationResult Validation()
+        public ValidationResult Validate()
         {
             var validation = new ProductValidation().Validate(this);
 

@@ -12,7 +12,7 @@ namespace DesafioEcommerce.Domain.ValueObjects
         
         public string Address { get; private set; }
 
-        public ValidationResult Validation()
+        public ValidationResult Validate()
         {
             var ValidationResult = new EmailValidation().Validate(this);
 

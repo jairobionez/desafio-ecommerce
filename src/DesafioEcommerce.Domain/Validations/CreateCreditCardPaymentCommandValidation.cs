@@ -7,17 +7,13 @@ namespace DesafioEcommerce.Domain.Validations
     {
         public CreateCreditCardPaymentCommandValidation()
         {
-
+            ValidateCreditCard();
         }
 
-
-        protected void ValidateName()
+        protected void ValidateCreditCard()
         {
-            RuleFor(p => p.FirsName)
-                .Length(0, 30).WithMessage("Máximo de caracteres permitidos 30");
-
-            RuleFor(p => p.LastName)
-                .Length(0, 100).WithMessage("Máximo de caracteres permitidos 100");
+            RuleFor(p => p.CardNumber)
+                .CreditCard().WithMessage("Número do cartão de crédito inválido");
         }
     }
 }

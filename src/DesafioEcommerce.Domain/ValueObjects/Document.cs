@@ -1,5 +1,6 @@
 ﻿using DesafioEcommerce.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+using DesafioEcommerce.Domain.Validations;
+using FluentValidation.Results;
 
 namespace DesafioEcommerce.Domain.ValueObjects
 {
@@ -15,15 +16,11 @@ namespace DesafioEcommerce.Domain.ValueObjects
         
         public EDocumentTypeEnum Type { get; private set; }
 
-        private bool Validate()
+        public ValidationResult Validate()
         {
-            if (Type == EDocumentTypeEnum.CNPJ && Number.Length == 14)
-                return true;
+            var validation = new DocumentValidation().Validate(this);
 
-            if (Type == EDocumentTypeEnum.CPF && Number.Length == 11)
-                return true;
-
-            return false;
+            return validation;
         }
     }
 }
