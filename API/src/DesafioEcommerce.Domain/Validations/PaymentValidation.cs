@@ -20,7 +20,7 @@ namespace DesafioEcommerce.Domain.Validations
         protected void ValidateTotalPaid()
         {
             RuleFor(p => p.TotalPaid)
-                .GreaterThanOrEqualTo(p => p.Total).WithMessage("O valor pago é menor que o valor do pagamento");
+                .GreaterThan(0).WithMessage("O total pago não pode ser menor ou igual 0");
         }
     }
 }

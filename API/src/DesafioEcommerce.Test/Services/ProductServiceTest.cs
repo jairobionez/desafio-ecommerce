@@ -40,7 +40,7 @@ namespace DesafioEcommerce.Test.Services
             result.Should().Be(null);
         }
 
-        [Fact(DisplayName = "Deve retornar uma todos os produtos")]
+        [Fact(DisplayName = "Deve retornar todos os produtos")]
         public void ShouldReturnAllProducts()
         {
             var result = _productService.Get();

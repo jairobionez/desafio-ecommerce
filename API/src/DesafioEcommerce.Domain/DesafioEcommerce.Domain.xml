@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DesafioEcommerce.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand">
+            <summary>
+            Comando para realizar um pagamento por boleto
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.FirsName">
+            <summary>
+            Nome
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.LastName">
+            <summary>
+            Sobrenome
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Document">
+            <summary>
+            CPF / CNPJ
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.BarCode">
+            <summary>
+            Código de barra do boleto
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.BoletoNumber">
+            <summary>
+            Número do boleto
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Total">
+            <summary>
+            Total
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.TotalPaid">
+            <summary>
+            Total Pago
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.PayerDocumentType">
+            <summary>
+            Tipo do documento (1-CPF /2-CNPJ)
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Street">
+            <summary>
+            Rua
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Number">
+            <summary>
+            Número residêncial
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Neighborhood">
+            <summary>
+            Bairro
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.City">
+            <summary>
+            Cidade
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.State">
+            <summary>
+            Estado
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Country">
+            <summary>
+            Pais
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.ZipCode">
+            <summary>
+            CEP
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Products">
+            <summary>
+            Produtos no carrinho
+            </summary>
+        </member>
+    </members>
+</doc>

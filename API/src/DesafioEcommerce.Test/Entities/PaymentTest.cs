@@ -42,13 +42,14 @@ namespace DesafioEcommerce.Test.Entities
             _payment.Validate().IsValid.Should().Be(isValid);
         }
 
-        [Fact(DisplayName = "Deve retornar erro quando o valor pago for menor que o total")]
-        public void ShouldReturnErrorWhenTotalPaidIsLessThanTotal()
-        {
-            _payment.Total = 50;
-            _payment.TotalPaid = 49;
+        [Theory(DisplayName = "Deve retornar erro quando o valor pago for menor ou igual a zero")]
+        [InlineData(0, false)]
+        [InlineData(-1, false)]
+        public void ShouldReturnErrorWhenTotalPaidIsLessThanOrEqualZero(decimal totalPago, bool isValid)
+        {            
+            _payment.TotalPaid = totalPago;
 
-            _payment.Validate().IsValid.Should().Be(false);
+            _payment.Validate().IsValid.Should().Be(isValid);
         }
 
         [Fact(DisplayName = "Deve retornar erro quando algum produto do carrinho estiver invalido")]

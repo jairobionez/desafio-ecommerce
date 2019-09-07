@@ -20,7 +20,6 @@ namespace DesafioEcommerce.Domain.Commands
         public string CardNumber { get; set; }
         public int SecurityCode { get; set; }
         public DateTime ValidDate { get; set; }
-        public DateTime PaidDate { get; set; }
         public decimal Total { get; set; }
         public decimal TotalPaid { get; set; }
         public EDocumentTypeEnum PayerDocumentType { get; set; }

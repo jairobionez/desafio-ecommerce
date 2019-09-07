@@ -14,22 +14,22 @@ namespace DesafioEcommerce.Domain.Validations
         protected void ValidateLength()
         {
             RuleFor(p => p.City)
-                .Length(30).WithMessage("Máximo de caracteres permitidos 30");
+                .Length(0, 30).WithMessage("Máximo de caracteres permitidos 30");
 
             RuleFor(p => p.Neighborhood)
-                .Length(20).WithMessage("Máximo de caracteres permitidos 20");
+                .Length(0, 20).WithMessage("Máximo de caracteres permitidos 20");
 
             RuleFor(p => p.Number)
-                .Length(6).WithMessage("Máximo de caracteres permitidos 6");
+                .Length(0, 6).WithMessage("Máximo de caracteres permitidos 6");
 
             RuleFor(p => p.State)
-                .Length(20).WithMessage("Máximo de caracteres permitidos 20");
+                .Length(0, 20).WithMessage("Máximo de caracteres permitidos 20");
 
             RuleFor(p => p.Street)
-                .Length(60).WithMessage("Máximo de caracteres permitidos 60");
+                .Length(0, 60).WithMessage("Máximo de caracteres permitidos 60");
 
             RuleFor(p => p.ZipCode)
-                .Length(8).WithMessage("Máximo de caracteres permitidos 8");
+                .Length(0, 8).WithMessage("Máximo de caracteres permitidos 8");
         }
 
         protected void ValidateRequired()

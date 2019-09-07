@@ -52,7 +52,7 @@ namespace DesafioEcommerce.Domain.Handlers
                 AddNotifications(document.Validate().Errors.ToList());
                 AddNotifications(address.Validate().Errors.ToList());
 
-                var payment = new BoletoPayment(name, address, command.BarCode, command.BoletoNumber, command.PaidDate,
+                var payment = new BoletoPayment(name, address, command.BarCode, command.BoletoNumber, DateTime.Now,
                                                 command.Total, command.TotalPaid, document, email);
                 payment.AddItems(command.Products);
 
@@ -112,7 +112,7 @@ namespace DesafioEcommerce.Domain.Handlers
 
 
                 var payment = new CreditCardPayment(command.CardHolderName, command.CardNumber, name,
-                                                    address, command.PaidDate, command.Total, command.TotalPaid,
+                                                    address, DateTime.Now, command.Total, command.TotalPaid,
                                                     document, email, command.SecurityCode, command.ValidDate);
                 payment.AddItems(command.Products);
 

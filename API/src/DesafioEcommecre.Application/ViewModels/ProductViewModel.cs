@@ -26,7 +26,7 @@ namespace DesafioEcommerce.Application.ViewModels
         /// </summary>
         [DisplayName("Imagem")]
         [Required(ErrorMessage = "A imagem do produto é necessária")]
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         /// <summary>
         /// Quantidade em estoque do produto
