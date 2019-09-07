@@ -28,10 +28,13 @@ namespace DesafioEcommerce.Application.Controllers
 
         /// <summary>
         /// Realiza o pagamento de uma compra por boleto
-        /// </summary>        
+        /// </summary>
+        /// <response code="200">Retorna se o pagamento por boleto foi realizado</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpPost]
         [Route("boleto")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(CommandResult), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> Payment([FromBody] CreateBoletoPaymentCommand payment)
@@ -44,8 +47,11 @@ namespace DesafioEcommerce.Application.Controllers
         /// <summary>
         /// Realiza o pagamento de uma compra por cartão de crédito
         /// </summary>        
+        /// <response code="200">Retorna se o pagamento por cartão de crédito foi realizado</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpPost]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(CommandResult), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         [Route("credit-card")]

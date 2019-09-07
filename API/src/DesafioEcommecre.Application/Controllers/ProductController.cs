@@ -38,8 +38,10 @@ namespace DesafioEcommerce.Application.Controllers
         /// Método para buscar os produtos cadastrados
         /// </summary>
         /// <returns>Retorna uma lista contendo todos os produtos cadastrados</returns>
+        /// <response code="200">Retorna todos os produtos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(List<ProductViewModel>), 200)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> Get()
         {
@@ -53,9 +55,12 @@ namespace DesafioEcommerce.Application.Controllers
         /// </summary>
         /// <param name="id">Representa o identicador de pesquisa</param>
         /// <returns>Retorna o produto com o identificador informado</returns>        
+        /// <response code="200">Retorna todos o produto pesquisado</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ProductViewModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> GetById(int id)
@@ -70,8 +75,11 @@ namespace DesafioEcommerce.Application.Controllers
         /// </summary>
         /// <param name="obj">Representa o produto a ser inserido</param>
         /// <returns>Retorna o produto inserido</returns>        
+        /// <response code="200">Retorna o produto inserido</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpPost]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ProductViewModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> Post([FromBody] ProductViewModel obj)
@@ -86,8 +94,11 @@ namespace DesafioEcommerce.Application.Controllers
         /// </summary>
         /// <param name="obj">Representa o produto a ser alterado</param>
         /// <returns>Retorna o produto atualizado</returns>        
+        /// <response code="200">Retorna o produto atualizado</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpPut]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ProductViewModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
         public async Task<IActionResult> Put([FromBody] ProductViewModel obj)
@@ -101,6 +112,9 @@ namespace DesafioEcommerce.Application.Controllers
         /// Deleta um produto
         /// </summary>
         /// <param name="id">Representa o identificador do produto a ser excluído</param>        
+        /// <response code="204">Informa que o produto foi excluído com sucesso</response>
+        /// <response code="400">Parâmetros inválidos</response>
+        /// <response code="500">Retorna um erro interno</response>
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(204)]

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>C:\Users\Usuário\Desktop\desafio-ecommerce\API\src\DesafioEcommerce.Domain\DesafioEcommerce.Domain.xml</DocumentationFile>
     <OutputPath></OutputPath>
   </PropertyGroup>
 

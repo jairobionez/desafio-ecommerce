@@ -45,12 +45,12 @@ namespace DesafioEcommerce.Application
                     Version = "v1",
                     Title = "Desafio E-commerce",
                     Description = "Descrição dos métodos da API do e-commerce",
-                    Contact = new Contact { Name = "Jairo Bionez", Email = "jairo.d.b@hotmail.com", Url = "https://github.com/jairobionez" },                    
+                    Contact = new Contact { Name = "Jairo Bionez", Email = "jairo.d.b@hotmail.com", Url = "https://github.com/jairobionez" },
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                s.IncludeXmlComments(xmlPath);
+                s.IncludeXmlComments(XmlCommentsFilePath(GetAssemblyName() + ".xml"));
+                s.IncludeXmlComments(XmlCommentsFilePath("DesafioEcommerce.Domain.xml"));
+
             });
             services.AddMvc().AddFluentValidation();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -71,8 +71,6 @@ namespace DesafioEcommerce.Application
                 app.UseHsts();
             }
 
-   
-
             app.UseHttpsRedirection();
             app.UseMvc();
 
@@ -87,5 +85,11 @@ namespace DesafioEcommerce.Application
         {
             InjectorBootStrapper.RegisterServices(services);
         }
+
+        private static string XmlCommentsFilePath(string xmlDocFileName)
+                                   => Path.Combine(AppContext.BaseDirectory, xmlDocFileName);
+        private static string GetAssemblyName()
+                                   => typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
     }
 }

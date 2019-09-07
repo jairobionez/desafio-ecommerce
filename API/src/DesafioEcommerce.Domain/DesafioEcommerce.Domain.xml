@@ -4,6 +4,16 @@
         <name>DesafioEcommerce.Domain</name>
     </assembly>
     <members>
+        <member name="T:DesafioEcommerce.Domain.Commands.CommandResult">
+            <summary>
+            Resultado de um comando
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CommandResult.Message">
+            <summary>
+            Informa se o comando foi executado com sucesso ou não
+            </summary>
+        </member>
         <member name="T:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand">
             <summary>
             Comando para realizar um pagamento por boleto
@@ -52,7 +62,7 @@
         <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.PayerDocumentType">
             <summary>
             Tipo do documento (1-CPF /2-CNPJ)
-            </summary>
+            </summary>]
         </member>
         <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Street">
             <summary>
@@ -92,6 +102,131 @@
         <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Products">
             <summary>
             Produtos no carrinho
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.FirsName">
+            <summary>
+            Nome
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.LastName">
+            <summary>
+            Sobrenome
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Document">
+            <summary>
+            CPF / CNPJ
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.CardHolderName">
+            <summary>
+            Nome do títular do cartão
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.CardNumber">
+            <summary>
+            Número do cartão
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.SecurityCode">
+            <summary>
+            Código de segurança
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.ValidDate">
+            <summary>
+            Data de validade
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Total">
+            <summary>
+            Total
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.TotalPaid">
+            <summary>
+            Total Pago
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.PayerDocumentType">
+            <summary>
+            Tipo do documento (1-CPF /2-CNPJ)
+            </summary>]
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Street">
+            <summary>
+            Rua
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Number">
+            <summary>
+            Número residêncial
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Neighborhood">
+            <summary>
+            Bairro
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.City">
+            <summary>
+            Cidade
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.State">
+            <summary>
+            Estado
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Country">
+            <summary>
+            Pais
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.ZipCode">
+            <summary>
+            CEP
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.Products">
+            <summary>
+            Produtos no carrinho
+            </summary>
+        </member>
+        <member name="T:DesafioEcommerce.Domain.ViewModel.CartViewModel">
+            <summary>
+            Modelo que representa os itens no carrinho
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Id">
+            <summary>
+            Identificador do produto (SKU)
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Amount">
+            <summary>
+            Quantidade do produto
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.UnitPrice">
+            <summary>
+            Preço unitário do produto
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Total">
+            <summary>
+            Total da soma dos produtos
+            </summary>
+        </member>
+        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Description">
+            <summary>
+            Descrição do produto
             </summary>
         </member>
     </members>
