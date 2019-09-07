@@ -47,13 +47,25 @@ namespace DesafioEcommerce.Domain.Entities
 
         public virtual IReadOnlyCollection<OrderItems> Items{ get { return _items.ToArray(); } }
 
-        public void AddItems(List<CartViewModel> items)
+        public bool AddItems(List<CartViewModel> items)
         {
-            //if (items) // validar            
+            bool isValid = true;
+
             items.ForEach(i =>
             {
-                _items.Add(new OrderItems(i.Amount, i.UnitPrice, i.Total, i.PaymentNumber));
+                if (!isValid) return;
+
+                var item = new OrderItems(i.Amount, i.UnitPrice, i.Total, i.PaymentNumber, i.Description);
+
+                if (item.Validate().IsValid)                    
+                    _items.Add(item);
+                else {
+                    isValid = false;
+                    return;
+                }
             });
+
+            return isValid;
         }
 
         public ValidationResult Validate()

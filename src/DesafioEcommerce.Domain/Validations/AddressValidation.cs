@@ -8,7 +8,7 @@ namespace DesafioEcommerce.Domain.Validations
         public AddressValidation()
         {
             ValidateLength();
-            ValidateRequired()
+            ValidateRequired();
         }
 
         protected void ValidateLength()
@@ -37,9 +37,6 @@ namespace DesafioEcommerce.Domain.Validations
             RuleFor(p => p.City)
                 .NotNull().WithMessage("Campo obrigatório")
                 .NotEmpty().WithMessage("Campo obrigatório");
-
-            RuleFor(p => p.Neighborhood)
-                .Length(20).WithMessage("Máximo de caracteres permitidos 20");
 
             RuleFor(p => p.Number)
                 .NotNull().WithMessage("Campo obrigatório")

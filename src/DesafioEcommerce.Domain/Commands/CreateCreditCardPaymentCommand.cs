@@ -16,8 +16,8 @@ namespace DesafioEcommerce.Domain.Commands
         public string LastName { get; set; }
         public string Document { get; set; }
         public string Email { get; set; }
-        public string CardHolderName { get; private set; }
-        public string CardNumber { get; private set; }
+        public string CardHolderName { get; set; }
+        public string CardNumber { get; set; }
         public int SecurityCode { get; set; }
         public DateTime ValidDate { get; set; }
         public DateTime PaidDate { get; set; }

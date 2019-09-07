@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DesafioEcommerce.Domain.Validations;
+using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,12 +14,13 @@ namespace DesafioEcommerce.Domain.Entities
                 
         }
 
-        public OrderItems(int amount, decimal unitPrice, decimal total, int orderNumber)
+        public OrderItems(int amount, decimal unitPrice, decimal total, int orderNumber, string description)
         {
             Amount = amount;
             UnitPrice = unitPrice;
             Total = total;
             PaymentNumber = orderNumber;
+            Description = description;
         }
 
         public int Amount { get; set; }
@@ -27,5 +30,12 @@ namespace DesafioEcommerce.Domain.Entities
         public string Description { get; set; }
 
         public virtual Payment Payment { get; set; }
+
+        public ValidationResult Validate()
+        {
+            var result = new OrderItemsValidation().Validate(this);
+
+            return result;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace DesafioEcommerce.Domain.Entities
 
         }
 
-        public Product(string description, byte[] image, int amount, decimal value, decimal weight, string eanCode)
+        public Product(string description, string image, int amount, decimal value, decimal weight, string eanCode)
         {
             Description = description;
             Image = image;
@@ -25,7 +25,7 @@ namespace DesafioEcommerce.Domain.Entities
         }
 
         public string Description { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public int Amount { get; set; }
         public decimal Value { get; set; }
         public decimal Weight { get; set; }

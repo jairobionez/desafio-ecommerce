@@ -19,7 +19,7 @@ namespace DesafioEcommerce.Domain.Validations
                 .Length(0, 30).WithMessage("Máximo de caracteres permitidos 30");
 
             RuleFor(p => p.LastName)
-                .Length(0, 70).WithMessage("Máximo de caracteres permitidos 100");
+                .Length(0, 70).WithMessage("Máximo de caracteres permitidos 70");
         }
     }
 }

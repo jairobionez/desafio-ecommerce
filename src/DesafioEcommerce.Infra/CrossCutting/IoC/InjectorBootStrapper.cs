@@ -27,15 +27,17 @@ namespace DesafioEcommerce.Infra.CrossCutting.IoC
             // Infra - Repostories
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
-            
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
             // Infra - Notifications
             services.AddScoped<INotifiable, Notifiable>();
 
             // Domain - Validations
-            services.AddTransient<IValidator<Product>, ProductValidation>();
-            services.AddTransient<IValidator<Email>, EmailValidation>();
-            services.AddTransient<IValidator<Payment>, PaymentValidation>();
-            services.AddTransient<IValidator<CreateCreditCardPaymentCommand>, CreateCreditCardPaymentCommandValidation>();
+            //TO DO: remover
+            //services.AddTransient<IValidator<Product>, ProductValidation>();
+            //services.AddTransient<IValidator<Email>, EmailValidation>();
+            //services.AddTransient<IValidator<Payment>, PaymentValidation>();
+            //services.AddTransient<IValidator<CreateCreditCardPaymentCommand>, CreateCreditCardPaymentCommandValidation>();
         }
     }
 }

@@ -14,13 +14,13 @@ namespace DesafioEcommerce.Domain.Validations
         protected void ValidateTotal()
         {
             RuleFor(p => p.Total)
-                .LessThanOrEqualTo(0).WithMessage("O total não pode ser 0");
+                .GreaterThan(0).WithMessage("O total não pode ser menor ou igual 0");
         }
 
         protected void ValidateTotalPaid()
         {
             RuleFor(p => p.TotalPaid)
-                .LessThanOrEqualTo(p => p.Total).WithMessage("O valor pago é menor que o valor do pagamento");
+                .GreaterThanOrEqualTo(p => p.Total).WithMessage("O valor pago é menor que o valor do pagamento");
         }
     }
 }

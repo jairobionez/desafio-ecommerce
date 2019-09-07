@@ -1,4 +1,5 @@
-﻿using DesafioEcommerce.Domain.ValueObjects;
+﻿using DesafioEcommerce.Domain.Enums;
+using DesafioEcommerce.Domain.ValueObjects;
 using FluentValidation;
 using System.Text.RegularExpressions;
 
@@ -8,28 +9,26 @@ namespace DesafioEcommerce.Domain.Validations
     {
         public DocumentValidation()
         {
-            ValidateCPF();
-            ValidateCNPJ();
+            ValidateCPFCNPJ();
         }
 
-        protected void ValidateCPF()
+        protected void ValidateCPFCNPJ()
         {
             RuleFor(p => p)
                 .Custom((item, context) =>
                     {
-                        if (!Regex.IsMatch(item.Number, @"/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/") && item.Type != Enums.EDocumentTypeEnum.CPF)
-                            context.AddFailure("Número do CPF inválido");
+                        switch (item.Type)
+                        {
+                            case EDocumentTypeEnum.CPF:
+                                if (!(Regex.IsMatch(item.Number, @"^[a-zA-Z0-9]{11}$")))
+                                    context.AddFailure("Número do CPF inválido");
+                                break;
+                            case EDocumentTypeEnum.CNPJ:
+                                if (!(Regex.IsMatch(item.Number, @"^[A-Za-z0-9]{14}$")))
+                                    context.AddFailure("Número do CNPJ inválido");
+                                break;
+                        }
                     });
-        }
-
-        protected void ValidateCNPJ()
-        {
-            RuleFor(p => p)
-                .Custom((item, context) =>
-                {
-                    if (!Regex.IsMatch(item.Number, @"/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/") && item.Type != Enums.EDocumentTypeEnum.CNPJ)
-                        context.AddFailure("Número do CNPJ inválido");
-                });
         }
     }
 }
