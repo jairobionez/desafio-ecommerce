@@ -16,9 +16,9 @@
 
 # Database
 
-- O Projeto possui Migrations, porém caso aconteça algo e o banco não seja gerado, basta utilizar os scripits na raiz
+- O Projeto possui Migrations, porÃ©m caso aconteÃ§a algo e o banco nÃ£o seja gerado, basta utilizar os scripits na raiz
 
-#Observações
+##ObservaÃ§Ãµes
 ###### O projeto foi criado utilizando:
  - .Net Core 2.1
  - Visual Studio 2019
