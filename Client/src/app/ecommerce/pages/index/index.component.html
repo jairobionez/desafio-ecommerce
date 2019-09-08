@@ -25,7 +25,7 @@
     <mat-sidenav-container fxFlexFill>
         <mat-sidenav #sidenav>
             <mat-nav-list>
-                <a href="#" mat-list-item>Cadastro de produto</a>
+                <a (click)="navigateTo(1)" mat-list-item>Cadastro de produto</a>
                 <a (click)="sidenav.toggle()" mat-list-item>Fechar</a>
                 <a mat-list-item *ngIf="inCadProd" (click)="navigateTo(2)">Voltar</a>
                 <mat-icon mat-list-item matBadge="{{cart.length}}" matBadgePosition="above after"

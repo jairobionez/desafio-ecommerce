@@ -43,16 +43,6 @@ namespace DesafioEcommerce.Test.Entities
 
             _items.Validate().IsValid.Should().Be(isValid);
 
-        }
-
-        [Theory(DisplayName = "Deve retornar erro quando o valor total for menor ou igual que zero")]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void ShouldReturnErrorWhenTotalIsLessOrEqualThanZero(int total, bool isValid)
-        {
-            _items.Total = total;
-
-            _items.Validate().IsValid.Should().Be(isValid);            
-        }
+        }       
     }
 }

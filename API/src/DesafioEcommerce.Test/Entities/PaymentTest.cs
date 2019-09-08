@@ -21,8 +21,8 @@ namespace DesafioEcommerce.Test.Entities
         public PaymentTest()
         {
             _items = new List<CartViewModel>() {
-                new CartViewModel(1, 2, -1, 20, 0, "CARNE BOVINA"),
-                new CartViewModel(2, 3, 15, 45, 0, "SABÃO EM PÓ")
+                new CartViewModel(1, 2, -1, 0, "CARNE BOVINA"),
+                new CartViewModel(2, 3, 45, 0, "SABÃO EM PÓ")
             };
 
             _name = new Name("Jairo", "Donizeti Bionez");

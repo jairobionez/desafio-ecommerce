@@ -14,6 +14,7 @@ namespace DesafioEcommerce.Test.Commands
         {
             var command = new CreateCreditCardPaymentCommand();
             command.CardNumber = "12346546";
+            command.ValidDate = DateTime.Now.AddDays(1);
 
             command.Valdiate().IsValid.Should().Be(false);            
         }
@@ -24,7 +25,8 @@ namespace DesafioEcommerce.Test.Commands
             // Para gerar o cartão foi usado https://ccardgenerator.com/generat-visa-card-numbers.php
 
             var command = new CreateCreditCardPaymentCommand();
-            command.CardNumber = "4296770761965717";
+            command.CardNumber = "4526923734292204";
+            command.ValidDate = DateTime.Now.AddDays(1);
 
             command.Valdiate().IsValid.Should().Be(true);            
         }
