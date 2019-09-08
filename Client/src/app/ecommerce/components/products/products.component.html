@@ -1,0 +1,29 @@
+<mat-grid-list cols="6" rowHeight="100px">
+    <mat-grid-tile *ngFor="let product of products.data" [colspan]="1" [rowspan]="3">
+        <mat-card class="square">
+            <img mat-card-image src="{{product.image}}" alt="Foto do produto">
+            <mat-card-content>
+                <p>
+                    <b>{{product.description}}</b>
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="div">
+                    <mat-grid-list cols="3" rowHeight="4rem">
+                        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                            <button mat-mini-fab color="primary" (click)="remove(amount, product)">-</button>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                            <mat-form-field class="width-form-field">
+                                <input matInput #amount value="0">
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile [colspan]="1" [rowspan]="1">
+                            <button mat-mini-fab color="primary" (click)="add(amount, product)">+</button>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

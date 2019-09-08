@@ -38,6 +38,19 @@ namespace DesafioEcommerce.Application
             var assembly = AppDomain.CurrentDomain.Load("DesafioEcommerce.Domain");
             services.AddMediatR(assembly);
 
+            services.AddCors(options =>
+            {
+
+            options.AddPolicy("allow",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
+            });
+
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new Info
@@ -62,6 +75,7 @@ namespace DesafioEcommerce.Application
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -71,6 +85,7 @@ namespace DesafioEcommerce.Application
                 app.UseHsts();
             }
 
+            app.UseCors("allow");
             app.UseHttpsRedirection();
             app.UseMvc();
 

@@ -1,1 +1,43 @@
-<button mat-button>Click me!</button>
+<div style="height: 80vh;">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Ecommerce Toboguim</span>
+            <span class="menu-spacer"></span>
+            <div fxShow="true" fxHide.lt-md>
+                <a mat-button (click)="navigateTo(1)">Cadastro de produto</a>
+            </div>
+            <div fxShow="inCadProd" fxHide.lt-md>
+                <a mat-button *ngIf="inCadProd" (click)="navigateTo(2)">Voltar</a>
+            </div>
+            <div fxShow="true" fxHide.lt-md class="mt-2">
+                <mat-icon matBadge="{{cart.length}}" matBadgePosition="above after" [matMenuTriggerFor]="shoppingCart"
+                    class="pointer">shopping_cart
+                </mat-icon>
+                <mat-menu #shoppingCart="matMenu">
+                    <button mat-menu-item>Finalizar compra</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+            <mat-nav-list>
+                <a href="#" mat-list-item>Cadastro de produto</a>
+                <a (click)="sidenav.toggle()" mat-list-item>Fechar</a>
+                <a mat-list-item *ngIf="inCadProd" (click)="navigateTo(2)">Voltar</a>
+                <mat-icon mat-list-item matBadge="{{cart.length}}" matBadgePosition="above after"
+                    [matMenuTriggerFor]="shoppingCart" class="pointer mt-4 ml-3">shopping_cart
+                </mat-icon>
+                <mat-menu #shoppingCart="matMenu">
+                    <button mat-menu-item>Finalizar compra</button>
+                </mat-menu>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

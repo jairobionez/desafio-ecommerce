@@ -1,0 +1,121 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoad"></mat-progress-bar>
+
+<input-file placeholder="Selecione uma imagem" [(ngModel)]="b64image">
+</input-file>
+
+<form [formGroup]="form">
+    <div class="mat-h1 mt-3" style="margin-bottom: 0px">
+        Cadastro de produtos
+    </div>
+    <mat-grid-list cols="6" rowHeight="100px">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <mat-form-field class="width-form-field w-98">
+                <input matInput placeholder="Descrição" formControlName="description">
+                <mat-error *ngIf="controls.description.errors?.required">
+                    A campo descrição obrigatório
+                </mat-error>
+                <mat-error *ngIf="controls.description.errors?.maxlength">
+                    Máximo de caracteres permitos 50
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="width-form-field w-98">
+                <input matInput type="number" placeholder="Valor" formControlName="value">
+                <mat-error *ngIf="controls.value.errors?.required">
+                    O campo valor é obrigatório
+                </mat-error>
+                <mat-error *ngIf="controls.value.errors?.min">
+                    O valor minimo informado deve ser 0.01
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="width-form-field w-98">
+                <input matInput type="number" placeholder="Peso" formControlName="weight">
+                <mat-error *ngIf="controls.weight.errors?.required">
+                    O campo peso é obrigatório
+                </mat-error>
+                <mat-error *ngIf="controls.weight.errors?.min">
+                    O valor minimo informado deve ser 0.01
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <mat-form-field class="width-form-field w-98">
+                <input matInput placeholder="Codigo EAN" formControlName="eanCode">
+                <mat-error *ngIf="controls.eanCode.errors?.required">
+                    O campo codigo ean é obrigatório
+                </mat-error>
+                <mat-error *ngIf="controls.eanCode.errors?.maxlength">
+                    Máximo de caracteres permitos 13
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="width-form-field w-98">
+                <input matInput type="number" placeholder="Quantidade" formControlName="amount">
+                <mat-error *ngIf="controls.amount.errors?.required">
+                    O campo quantidade é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle class="primary" [disabled]="selected.id" (click)="save()">Salvar</mat-button-toggle>
+                <mat-button-toggle class="primary" [disabled]="!selected.id" (click)="update()">Atualizar
+                </mat-button-toggle>
+                <mat-button-toggle [disabled]="!selected.id" (click)="delete()">Deletar</mat-button-toggle>
+                <mat-button-toggle (click)="clear()">Limpar</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+<div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-table-body">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Sku </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Peso </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef> Valor </th>
+            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eanCode">
+            <th mat-header-cell *matHeaderCellDef> Código EAN </th>
+            <td mat-cell *matCellDef="let element"> {{element.eanCode}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Imagem </th>
+            <td mat-cell *matCellDef="let element"> <img [src]="element.image" /> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="sendToForm(row)"
+            [ngClass]="{'active-row': selected.id == row.id}"></tr>
+    </table>
+    <mat-paginator #ProductPaginator [pageSizeOptions]="[4, 10, 15]" showFirstLastButtons>
+    </mat-paginator>
+</div>
