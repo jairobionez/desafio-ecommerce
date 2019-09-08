@@ -1,15 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChildren,
-  QueryList,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component,OnInit,ElementRef,ViewChildren,QueryList} from "@angular/core";
 import { EcommerceService } from "../../services/ecommerce.service";
 import { Product } from "../../models/product.entity";
-import { catchError } from "rxjs/operators";
+import { catchError, finalize } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { CartActionEnum } from "../../enums/cart-aciton.enum";
 import { CartService } from "../../services/cart.service";
@@ -22,7 +14,7 @@ import { MatSnackBar } from "@angular/material";
 })
 export class ProductsComponent implements OnInit {
   @ViewChildren("amount") amount: QueryList<ElementRef>;
-
+  isLoad: boolean;
   products: Product[] = [];
   breakpoint: any;
 
@@ -46,9 +38,13 @@ export class ProductsComponent implements OnInit {
   }
 
   loadProducts(): void {
+    this.isLoad = true;
     this._ecommerceService
       .getProducts()
       .pipe(
+        (finalize(() => {
+          this.isLoad = false;
+        })),
         catchError(err => {
           return throwError(err);
         })

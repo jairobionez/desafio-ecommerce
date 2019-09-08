@@ -1,4 +1,4 @@
-### Desafio Ecommerce
+﻿### Desafio Ecommerce
 
 ## Api (.net core)
 ###### Desenvolvida utilizando:
@@ -22,5 +22,5 @@
 ###### O projeto foi criado utilizando:
  - .Net Core 2.1
  - Visual Studio 2019
- - Angular 7
+ - Angular 7 (rodar "npm i" / para iniciar "npm i -o")
  - Sql Server (Visual Studio)
