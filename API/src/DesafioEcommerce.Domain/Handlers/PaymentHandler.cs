@@ -42,7 +42,7 @@ namespace DesafioEcommerce.Domain.Handlers
                     return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
                 }
 
-                var name = new Name(command.FirsName, command.LastName);
+                var name = new Name(command.FirstName, command.LastName);
                 var document = new Document(command.Document, EDocumentTypeEnum.CPF);
                 var email = new Email(command.Email);
                 var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.Neighborhood, command.Number);
@@ -52,7 +52,7 @@ namespace DesafioEcommerce.Domain.Handlers
                 AddNotifications(document.Validate().Errors.ToList());
                 AddNotifications(address.Validate().Errors.ToList());
 
-                var payment = new BoletoPayment(name, address, command.BarCode, command.BoletoNumber, DateTime.Now,
+                var payment = new BoletoPayment(name, address, command.BoletoNumber, DateTime.Now,
                                                 command.Total, command.TotalPaid, document, email);
                 payment.AddItems(command.Products);
 
@@ -81,6 +81,10 @@ namespace DesafioEcommerce.Domain.Handlers
                     if (!payment.Validate().IsValid)
                         AddNotifications(payment.Validate().Errors.ToList());
                 }
+                else
+                {
+                    return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
+                }
 
                 return Task.FromResult(new CommandResult("Pagamento realizado com sucesso"));
             }
@@ -100,7 +104,7 @@ namespace DesafioEcommerce.Domain.Handlers
                     return Task.FromResult(new CommandResult("Não foi possível realizar o pagamento"));
                 }
 
-                var name = new Name(command.FirsName, command.LastName);
+                var name = new Name(command.FirstName, command.LastName);
                 var document = new Document(command.Document, EDocumentTypeEnum.CPF);
                 var email = new Email(command.Email);
                 var address = new Address(command.Street, command.City, command.State, command.ZipCode, command.ZipCode, command.Number);

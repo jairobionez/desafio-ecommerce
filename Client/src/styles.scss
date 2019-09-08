@@ -54,3 +54,8 @@ $app-theme: mat-light-theme($app-primary, $app-accent);
 .mat-tab-body {
   height: 80vh;
 }
+
+.w-14-right{
+  width: 14%;
+  text-align: right;
+}

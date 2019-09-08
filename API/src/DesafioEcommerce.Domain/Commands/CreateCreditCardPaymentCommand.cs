@@ -18,7 +18,7 @@ namespace DesafioEcommerce.Domain.Commands
         /// </summary>
         [Required]
         [MaxLength(30)]
-        public string FirsName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Sobrenome

@@ -55,7 +55,7 @@ namespace DesafioEcommerce.Domain.Entities
             {
                 if (!isValid) return;
 
-                var item = new OrderItems(i.Amount, i.UnitPrice, i.Total, i.PaymentNumber, i.Description);
+                var item = new OrderItems(i.Amount, i.UnitPrice, i.PaymentNumber, i.Description);
 
                 if (item.Validate().IsValid)                    
                     _items.Add(item);

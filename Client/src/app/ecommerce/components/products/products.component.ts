@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   @ViewChildren("amount") amount: QueryList<ElementRef>;
 
   products: Product[] = [];
+  breakpoint: any;
 
   constructor(
     private _ecommerceService: EcommerceService,
@@ -33,6 +34,15 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.loadProducts();
+    this.onResize(window);    
+  }
+
+  onResize(event) {
+    if (event.innerWidth <= 600) this.breakpoint = 1;
+    else if (event.innerWidth <= 900) this.breakpoint = 2;
+    else if (event.innerWidth <= 1100) this.breakpoint = 3;
+    else if (event.innerWidth <= 1700) this.breakpoint = 4;
+    else this.breakpoint = 6;
   }
 
   loadProducts(): void {

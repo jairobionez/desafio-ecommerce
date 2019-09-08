@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { CadProductComponent } from './components/cad-product/cad-product.component';
 import { ProductsComponent } from './components/products/products.component';
+import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
 
 
 const routes: Routes = [
@@ -18,10 +19,7 @@ const routes: Routes = [
   },
   {
     path: '', redirectTo: 'index/products'
-  },
-  {
-    path: 'index', redirectTo: 'index/products'
-  }  
+  }
 ];
 
 @NgModule({

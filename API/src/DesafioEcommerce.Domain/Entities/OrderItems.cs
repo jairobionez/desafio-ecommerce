@@ -14,18 +14,16 @@ namespace DesafioEcommerce.Domain.Entities
                 
         }
 
-        public OrderItems(int amount, decimal unitPrice, decimal total, int orderNumber, string description)
+        public OrderItems(int amount, decimal unitPrice, int orderNumber, string description)
         {
             Amount = amount;
             UnitPrice = unitPrice;
-            Total = total;
             PaymentNumber = orderNumber;
             Description = description;
         }
 
         public int Amount { get; set; }
         public decimal UnitPrice { get; set; }
-        public decimal Total { get; set; }
         public int PaymentNumber { get; set; }
         public string Description { get; set; }
 

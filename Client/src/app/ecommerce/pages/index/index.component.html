@@ -17,7 +17,7 @@
                     class="pointer">shopping_cart
                 </mat-icon>
                 <mat-menu #shoppingCart="matMenu">
-                    <button mat-menu-item>Finalizar compra</button>
+                    <button mat-menu-item (click)="openCheckOutDialog()">Finalizar compra</button>
                 </mat-menu>
             </div>
         </mat-toolbar-row>
@@ -32,7 +32,7 @@
                     [matMenuTriggerFor]="shoppingCart" class="pointer mt-4 ml-3">shopping_cart
                 </mat-icon>
                 <mat-menu #shoppingCart="matMenu">
-                    <button mat-menu-item>Finalizar compra</button>
+                    <button mat-menu-item (click)="openCheckOutDialog()">Finalizar compra</button>
                 </mat-menu>
             </mat-nav-list>
         </mat-sidenav>

@@ -27,10 +27,6 @@ namespace DesafioEcommerce.Infra.Data.Mapping
                 .HasColumnName("VLRUNITARIO")
                 .HasColumnType("decimal(15,3)");
 
-            builder.Property(p => p.Total)
-                .HasColumnName("VLRTOTAL")
-                .HasColumnType("decimal(15,3)");
-
             builder.Property(p => p.Amount)
                 .HasColumnName("QUANTIDADE")
                 .HasColumnType("int");

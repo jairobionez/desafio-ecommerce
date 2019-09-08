@@ -10,12 +10,11 @@ namespace DesafioEcommerce.Domain.ViewModel
     /// </summary>
     public class CartViewModel
     {
-        public CartViewModel(int id, int amount, decimal unitPrice, decimal total, int paymentNumber, string description)
+        public CartViewModel(int id, int amount, decimal unitPrice, int paymentNumber, string description)
         {
             Id = id;
             Amount = amount;
             UnitPrice = unitPrice;
-            Total = total;
             PaymentNumber = paymentNumber;
             Description = description;
         }
@@ -34,11 +33,6 @@ namespace DesafioEcommerce.Domain.ViewModel
         /// Preço unitário do produto
         /// </summary>
         public decimal UnitPrice { get; set; }
-
-        /// <summary>
-        /// Total da soma dos produtos
-        /// </summary>
-        public decimal Total { get; set; }
 
         [JsonIgnore]
         public int PaymentNumber { get; set; }

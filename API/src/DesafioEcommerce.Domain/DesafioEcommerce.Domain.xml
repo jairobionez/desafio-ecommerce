@@ -19,7 +19,7 @@
             Comando para realizar um pagamento por boleto
             </summary>
         </member>
-        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.FirsName">
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.FirstName">
             <summary>
             Nome
             </summary>
@@ -37,11 +37,6 @@
         <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.Email">
             <summary>
             Email
-            </summary>
-        </member>
-        <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.BarCode">
-            <summary>
-            Código de barra do boleto
             </summary>
         </member>
         <member name="P:DesafioEcommerce.Domain.Commands.CreateBoletoPaymentCommand.BoletoNumber">
@@ -104,7 +99,7 @@
             Produtos no carrinho
             </summary>
         </member>
-        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.FirsName">
+        <member name="P:DesafioEcommerce.Domain.Commands.CreateCreditCardPaymentCommand.FirstName">
             <summary>
             Nome
             </summary>
@@ -217,11 +212,6 @@
         <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.UnitPrice">
             <summary>
             Preço unitário do produto
-            </summary>
-        </member>
-        <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Total">
-            <summary>
-            Total da soma dos produtos
             </summary>
         </member>
         <member name="P:DesafioEcommerce.Domain.ViewModel.CartViewModel.Description">

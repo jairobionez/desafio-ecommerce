@@ -11,7 +11,6 @@ namespace PaymentContext.Domain.Entities
         public BoletoPayment(
             Name name,
             Address address,
-            string barCode,
             string boletoNumber,
             DateTime paidDate,
             decimal total,
@@ -26,11 +25,9 @@ namespace PaymentContext.Domain.Entities
                 email,
                 document)
         {
-            BarCode = barCode;
             BoletoNumber = boletoNumber;
         }
 
-        public string BarCode { get; private set; }
         public string BoletoNumber { get; private set; }
     }
 }

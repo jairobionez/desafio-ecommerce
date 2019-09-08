@@ -1,0 +1,255 @@
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Forma de pagamento</ng-template>
+        <mat-toolbar>
+            <mat-toolbar-row (click)="choseForm(false)">
+                Boleto
+                <span class="menu-spacer"></span>
+                <div fxShow="{{!isCredit}}" fxHide.lt-md>
+                    5% de desconto em comprar por boleto
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-toolbar class="mt-3">
+            <mat-toolbar-row (click)="choseForm(true)">Cartão de crédito</mat-toolbar-row>
+        </mat-toolbar>
+
+        <ng-container *ngIf="isCredit">
+            <form [formGroup]="formPayment">
+                <mat-grid-list cols="3" rowHeight="70px">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="width-form-field w-98">
+                            <input matInput placeholder="Número do cartão" formControlName="cardNumber">
+                            <mat-error *ngIf="paymentControls.cardNumber.errors?.required">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="width-form-field w-98">
+                            <input matInput placeholder="CVV" formControlName="securityCode">
+                            <mat-error *ngIf="paymentControls.securityCode.errors?.required">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="width-form-field w-98">
+                            <input matInput [matDatepicker]="pickerDev" formControlName="validDate" type="text"
+                                placeholder="Data de validade">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDev"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDev></mat-datepicker>
+                            <mat-error *ngIf="paymentControls.validDate.errors?.required">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="width-form-field w-98">
+                            <input matInput placeholder="Nome do títular" formControlName="cardHolderName">
+                            <mat-error *ngIf="paymentControls.cardHolderName.errors?.required">
+                                Campo obrigatório
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+        </ng-container>
+
+        <mat-list>
+            <mat-list-item class="actions">
+                <span class="menu-spacer"></span>
+                <div>
+                    <button mat-raised-button matStepperNext (click)="cancel()">Cancelar</button>
+                    <button mat-raised-button matStepperNext color="primary" style="margin-left: .5rem">Avançar</button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-step>
+
+    <!-- segundo step -->
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Dados do comprador</ng-template>
+        <form [formGroup]="formBuyer">
+            <mat-grid-list cols="5" rowHeight="70px">
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Nome" formControlName="firstName">
+                        <mat-error *ngIf="buyerControls.firstName.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Sobrenome" formControlName="lastName">
+                        <mat-error *ngIf="buyerControls.lastName.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Rua" formControlName="street">
+                        <mat-error *ngIf="buyerControls.street.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Bairro" formControlName="neighborhood">
+                        <mat-error *ngIf="buyerControls.neighborhood.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Cidade" formControlName="city">
+                        <mat-error *ngIf="buyerControls.city.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Estado" formControlName="state">
+                        <mat-error *ngIf="buyerControls.state.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="CEP" formControlName="zipCode">
+                        <mat-error *ngIf="buyerControls.zipCode.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Pais" formControlName="country">
+                        <mat-error *ngIf="buyerControls.country.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="Número" formControlName="number">
+                        <mat-error *ngIf="buyerControls.number.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="E-mail" formControlName="email">
+                        <mat-error *ngIf="buyerControls.email.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                        <mat-error *ngIf="buyerControls.email.errors?.email">
+                            Endereço de e-mail incorreto
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field class="width-form-field w-98">
+                        <input matInput placeholder="CPF/CNPJ" formControlName="document">
+                        <mat-error *ngIf="buyerControls.document.errors?.required">
+                            Campo obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="4" [rowspan]="1">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button mat-raised-button matStepperPrevious style="margin-left: 1.1rem"
+                        color="primary">Voltar</button>
+                    <button mat-raised-button matStepperNext style="margin-left: .25rem"
+                        color="primary">Avançar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-step>
+
+    <!-- utlimo step -->
+    <mat-step>
+        <ng-template matStepLabel>Finalizar compra</ng-template>
+        <mat-list class="body-list">
+            <mat-list-item>
+                <b>Descrição</b>
+                <span class="menu-spacer"></span>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    <b>Valor Unitário</b>
+                </div>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    <b>Quantidade</b>
+                </div>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    <b>Total</b>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item *ngFor="let item of cart">
+                {{item.description}}
+                <span class="menu-spacer"></span>
+                <div class="w-14-right" fxShow="true">
+                    {{item.unitPrice | currency:'BRL'}}
+                </div>
+                <div class="w-14-right" fxShow="true">
+                    X{{item.amount}}
+                </div>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    {{totalProduct(item) | currency:'BRL'}}
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+        <mat-list>
+            <mat-list-item>
+                Total
+                <span class="menu-spacer"></span>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    {{totalCart() | currency: 'BRL'}}
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                Subtotal (a pagar)
+                <span class="menu-spacer"></span>
+                <div class="w-14-right" fxShow="{{!isCredit}}" fxHide.lt-md>
+                    5% de desconto (boleto)
+                </div>
+                <div class="w-14-right" fxShow="true" fxHide.lt-md>
+                    {{totalWithDiscount() | currency: 'BRL'}}
+                </div>
+            </mat-list-item>
+            <mat-list-item class="actions">
+                <span class="menu-spacer"></span>
+                <div>
+                    <button mat-raised-button (click)="stepper.reset()">Voltar ao inicio</button>
+                    <button mat-raised-button color="primary" style="margin-left: 0.5rem"
+                        (click)="payment()">Finalizar</button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<!-- firsName: null,
+lastName: null,
+street: null,
+city: null,
+state: null,
+zipCode: null,
+neightborhood: null,
+number: null,
+payerDocumentType: 1 -->

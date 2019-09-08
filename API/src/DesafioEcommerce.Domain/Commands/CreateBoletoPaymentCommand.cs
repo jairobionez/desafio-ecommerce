@@ -18,7 +18,7 @@ namespace DesafioEcommerce.Domain.Commands
         /// </summary>
         [Required]
         [MaxLength(30)]
-        public string FirsName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Sobrenome
@@ -39,13 +39,6 @@ namespace DesafioEcommerce.Domain.Commands
         [Required]
         [MaxLength(50)]
         public string Email { get; set; }
-
-        /// <summary>
-        /// Código de barra do boleto
-        /// </summary>
-        [Required]
-        [MaxLength(50)]
-        public string BarCode { get; set; }
 
         /// <summary>
         /// Número do boleto
@@ -89,7 +82,6 @@ namespace DesafioEcommerce.Domain.Commands
         /// <summary>
         /// Bairro
         /// </summary>
-        [Required]
         public string Neighborhood { get; set; }
 
         /// <summary>

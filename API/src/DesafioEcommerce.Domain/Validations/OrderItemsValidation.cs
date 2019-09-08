@@ -10,7 +10,6 @@ namespace DesafioEcommerce.Domain.Validations
             ValidateAmount();
             ValidateDescription();
             ValidateUnitPrice();
-            ValidateTotal();
         }
 
         protected void ValidateAmount()
@@ -30,12 +29,6 @@ namespace DesafioEcommerce.Domain.Validations
         {
             RuleFor(p => p.UnitPrice)
                 .GreaterThan(0).WithMessage("A valor unitário deve ser maior que zero");
-        }
-
-        protected void ValidateTotal()
-        {
-            RuleFor(p => p.Total)
-                .GreaterThan(0).WithMessage("A valor total deve ser maior que zero");
         }
     }
 }

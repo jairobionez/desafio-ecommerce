@@ -1,5 +1,5 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule, LOCALE_ID } from "@angular/core";
+import { CommonModule, registerLocaleData } from "@angular/common";
 import { IndexComponent } from "./pages/index/index.component";
 import { EcommerceRoutingModule } from "./ecommerce-routing.module";
 import { MatMenuModule } from "@angular/material/menu";
@@ -8,7 +8,9 @@ import {
   MatSidenavModule,
   MatListModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule
 } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatBadgeModule } from "@angular/material/badge";
@@ -26,15 +28,29 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS
+} from "@angular/material/dialog";
+import { MatStepperModule } from "@angular/material/stepper";
+import { CheckOutComponent } from "./components/check-out/check-out.component";
+import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from "@angular/material/radio";
+import { CartPaymentService } from "./services/cart-payment.service";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+
+import localePt from "@angular/common/locales/pt";
+registerLocaleData(localePt, "pt");
 
 const config: InputFileConfig = {};
 
 const COMPONENTS = [IndexComponent, ProductsComponent, CadProductComponent];
 
-const SERVICES = [EcommerceService, CartService];
+const SERVICES = [EcommerceService, CartService, CartPaymentService, MatDatepickerModule];
 
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, CheckOutComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -56,9 +72,22 @@ const SERVICES = [EcommerceService, CartService];
     MatProgressBarModule,
     MatButtonToggleModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
   exports: [...COMPONENTS],
-  providers: [...SERVICES]
+  providers: [
+    ...SERVICES,
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+    { provide: MAT_DATE_LOCALE, useValue: "pt-PT" },
+    { provide: LOCALE_ID, useValue: "pt-PT" }
+  ],
+  entryComponents: [CheckOutComponent]
 })
 export class EcommerceModule {}
