@@ -82,6 +82,7 @@ export class IndexComponent implements OnInit {
     switch (event) {
       case 1:
         this._router.navigateByUrl("index/register");
+        this.cart = [];        
         break;
       case 2:
         this._router.navigateByUrl("index/products");

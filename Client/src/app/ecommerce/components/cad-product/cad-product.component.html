@@ -65,11 +65,11 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle class="primary" [disabled]="selected.id" (click)="save()">Salvar</mat-button-toggle>
-                <mat-button-toggle class="primary" [disabled]="!selected.id" (click)="update()">Atualizar
+                <mat-button-toggle class="primary" [disabled]="controls.id.value != 0" (click)="save()">Salvar</mat-button-toggle>
+                <mat-button-toggle class="primary" [disabled]="controls.id.value == 0" (click)="update($event)">Atualizar
                 </mat-button-toggle>
-                <mat-button-toggle [disabled]="!selected.id" (click)="delete()">Deletar</mat-button-toggle>
-                <mat-button-toggle (click)="clear()">Limpar</mat-button-toggle>
+                <mat-button-toggle [disabled]="controls.id.value == 0" (click)="delete($event)">Deletar</mat-button-toggle>
+                <mat-button-toggle (click)="reset()">Limpar</mat-button-toggle>
             </mat-button-toggle-group>
         </mat-grid-tile>
     </mat-grid-list>
