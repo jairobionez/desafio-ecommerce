@@ -117,6 +117,13 @@ export class CheckOutComponent implements OnInit {
           .paymentBoleto(this.paymentModel)
           .pipe(
             catchError(err => {
+              let error: string = "";
+              err.error.errors.forEach(element => {
+                error += element.notificacao + "\n"
+              });
+
+              this._snackBar.open(error,"Alerta",{ duration: 6000 });
+
               return throwError(err);
             })
           )
