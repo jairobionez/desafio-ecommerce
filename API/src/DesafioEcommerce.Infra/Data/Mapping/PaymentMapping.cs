@@ -39,27 +39,27 @@ namespace DesafioEcommerce.Infra.Data.Mapping
 
                 address.Property(p => p.Neighborhood)
                     .HasColumnName("BAIRRO")
-                    .HasColumnType("varhcar(20)")
+                    .HasColumnType("varchar(20)")
                     .HasMaxLength(20);
 
                 address.Property(p => p.Number)
                     .HasColumnName("NUMERO")
-                    .HasColumnType("varhcar(6)")
+                    .HasColumnType("varchar(6)")
                     .HasMaxLength(6);
 
                 address.Property(p => p.State)
                     .HasColumnName("ESTADO")
-                    .HasColumnType("varhcar(20)")
+                    .HasColumnType("varchar(20)")
                     .HasMaxLength(20);
 
                 address.Property(p => p.Street)
                     .HasColumnName("RUA")
-                    .HasColumnType("varhcar(60)")
+                    .HasColumnType("varchar(60)")
                     .HasMaxLength(60);
 
                 address.Property(p => p.ZipCode)
                     .HasColumnName("CEP")
-                    .HasColumnType("varhcar(8)")
+                    .HasColumnType("varchar(8)")
                     .HasMaxLength(8);
             });
 

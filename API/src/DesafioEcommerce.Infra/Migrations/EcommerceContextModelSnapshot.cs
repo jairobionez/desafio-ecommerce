@@ -137,27 +137,27 @@ namespace DesafioEcommerce.Infra.Migrations
 
                             b1.Property<string>("Neighborhood")
                                 .HasColumnName("BAIRRO")
-                                .HasColumnType("varhcar(20)")
+                                .HasColumnType("varchar(20)")
                                 .HasMaxLength(20);
 
                             b1.Property<string>("Number")
                                 .HasColumnName("NUMERO")
-                                .HasColumnType("varhcar(6)")
+                                .HasColumnType("varchar(6)")
                                 .HasMaxLength(6);
 
                             b1.Property<string>("State")
                                 .HasColumnName("ESTADO")
-                                .HasColumnType("varhcar(20)")
+                                .HasColumnType("varchar(20)")
                                 .HasMaxLength(20);
 
                             b1.Property<string>("Street")
                                 .HasColumnName("RUA")
-                                .HasColumnType("varhcar(60)")
+                                .HasColumnType("varchar(60)")
                                 .HasMaxLength(60);
 
                             b1.Property<string>("ZipCode")
                                 .HasColumnName("CEP")
-                                .HasColumnType("varhcar(8)")
+                                .HasColumnType("varchar(8)")
                                 .HasMaxLength(8);
 
                             b1.ToTable("PAGAMENTO");
